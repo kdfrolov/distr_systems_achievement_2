@@ -1,0 +1,27 @@
+services:
+  db:
+    image: "postgres:16-alpine"
+    environment:
+      - POSTGRES_USER=app_user
+      - POSTGRES_PASSWORD=app_password
+      - POSTGRES_DB=app_db
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+
+  app:
+    build: .
+    restart: on-failure
+    ports:
+      - "80:8000"
+    environment:
+      - DB_HOST=db
+      - DB_PORT=5432
+      - DB_USER=app_user
+      - DB_PASSWORD=app_password
+      - DB_DATABASE=app_db
+    depends_on:
+      - db
+
+volumes:
+  pg_data:
