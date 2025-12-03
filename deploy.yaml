@@ -24,7 +24,7 @@ spec:
         app: db
     spec:
       nodeSelector:
-        kubernetes.io/hostname: node-22
+        kubernetes.io/hostname: node-02
       containers:
         - name: db
           image: postgres:16-alpine
@@ -67,7 +67,7 @@ spec:
         app: app
     spec:
       nodeSelector:
-        kubernetes.io/hostname: node-22
+        kubernetes.io/hostname: node-02
       containers:
         - name: app
           image: kdfrolov/my_app:latest
